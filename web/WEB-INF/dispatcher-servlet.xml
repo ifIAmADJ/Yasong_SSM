@@ -1,6 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+        <!--导入JDBC资源文件-->
+        <context:property-placeholder location="classpath:Config/dbConfig.properties"/>
+
+        <!--配置数据源-->
+        <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+                <property name="jdbcUrl" value="${jdbc.url}"/>
+                <property name="driverClass" value="${jdbc.driver}"/>
+                <property name="user" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+        </bean>
+
+        <!--Mybatis-spring 配置SqlSessionFactory-->
+        <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+                <property name="dataSource" ref="dataSource"/>
+                <property name="configLocation" value="classpath:Config/mybatis-config.xml"/>
+        </bean>
+
+        <!--扫描DAO的接口-->
+        <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+                <property name="basePackage" value="Dao"/>
+                <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+                <property name="annotationClass" value="org.springframework.stereotype.Repository"/>
+        </bean>
+
+        <!--自动扫描MVC组件-->
+        <mvc:annotation-driven/>
+
+        <!--
+                扫描路径下所有标记为@Controller,@Repository,@Service的Bean。
+        -->
+        <context:component-scan base-package="Controller,Dao,Service"/>
+
+        <!--事务相关-->
+        <!--配置事务管理器。采取声明式事务。-->
+        <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+                <property name="dataSource" ref="dataSource"/>
+        </bean>
+
+        <!--启动事务注解。-->
+        <tx:annotation-driven transaction-manager="transactionManager"/>
 
 </beans>

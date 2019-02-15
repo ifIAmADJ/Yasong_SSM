@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="Yasong_SSM:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/Yasong_SSM_war_exploded</output-path>
+    <output-path>$USER_HOME$/Desktop</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="Yasong_SSM/web/Web" />
       <element id="directory" name="WEB-INF">
@@ -10,6 +10,7 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="lib" />
           <element id="library" level="project" name="Spring MVC-4.3.18.RELEASE" />
+          <element id="library" level="project" name="lib (2)" />
         </element>
       </element>
     </root>
