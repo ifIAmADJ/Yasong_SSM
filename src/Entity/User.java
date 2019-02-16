@@ -2,10 +2,15 @@ package Entity;
 
 import java.sql.Timestamp;
 
+/**
+ * 这个实体类装载了用户的所有信息。
+ */
 public class User {
 
-//    用户的账户。主键。
-    private String account;
+//    在数据库中的主键。会加密成MD5码。
+    private String user_id;
+//    用户的账号。
+    private String username;
 //    用户的昵称。
     private String nickname;
 //    用户的密码。
@@ -13,23 +18,23 @@ public class User {
 //    用户的性别。
     private String sex;
 //    用户的经验值。
-    private int exp;
+    private Integer exp;
 //    用户的等级。
-    private int level;
+    private Integer level;
 //    用户的积分。
-    private int point;
+    private Integer points;
 //    统计用户的评论数量。
-    private int comments;
+    private Integer comments;
 //    统计用户的粉丝数量。
-    private int fans;
+    private Integer fans;
 //    统计用户获得的点赞数。
-    private int likenum;
+    private Integer likenum;
 //    统计用户发布的作品数量。
-    private int productions;
+    private Integer productions;
 //    用户的个性签名。
     private String signature;
 //    获取用户的头像存储路径。
-    private String avantor_path;
+    private String avanta_path;
 //    用户首次注册的时间。
     private Timestamp join_date;
 //    用户最后一次注册的时间。
@@ -43,12 +48,20 @@ public class User {
 //    ----set和get方法-------------//
 
 
-    public String getAccount() {
-        return account;
+    public String getUser_id() {
+        return user_id;
     }
 
-    public void setAccount(String account) {
-        this.account = account;
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getNickname() {
@@ -75,59 +88,59 @@ public class User {
         this.sex = sex;
     }
 
-    public int getExp() {
+    public Integer getExp() {
         return exp;
     }
 
-    public void setExp(int exp) {
+    public void setExp(Integer exp) {
         this.exp = exp;
     }
 
-    public int getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(Integer level) {
         this.level = level;
     }
 
-    public int getPoint() {
-        return point;
+    public Integer getPoints() {
+        return points;
     }
 
-    public void setPoint(int point) {
-        this.point = point;
+    public void setPoints(Integer points) {
+        this.points = points;
     }
 
-    public int getComments() {
+    public Integer getComments() {
         return comments;
     }
 
-    public void setComments(int comments) {
+    public void setComments(Integer comments) {
         this.comments = comments;
     }
 
-    public int getFans() {
+    public Integer getFans() {
         return fans;
     }
 
-    public void setFans(int fans) {
+    public void setFans(Integer fans) {
         this.fans = fans;
     }
 
-    public int getLikenum() {
+    public Integer getLikenum() {
         return likenum;
     }
 
-    public void setLikenum(int likenum) {
+    public void setLikenum(Integer likenum) {
         this.likenum = likenum;
     }
 
-    public int getProductions() {
+    public Integer getProductions() {
         return productions;
     }
 
-    public void setProductions(int productions) {
+    public void setProductions(Integer productions) {
         this.productions = productions;
     }
 
@@ -139,12 +152,12 @@ public class User {
         this.signature = signature;
     }
 
-    public String getAvantor_path() {
-        return avantor_path;
+    public String getAvanta_path() {
+        return avanta_path;
     }
 
-    public void setAvantor_path(String avantor_path) {
-        this.avantor_path = avantor_path;
+    public void setAvanta_path(String avanta_path) {
+        this.avanta_path = avanta_path;
     }
 
     public Timestamp getJoin_date() {
@@ -163,21 +176,44 @@ public class User {
         this.last_login_date = last_login_date;
     }
 
-    public User(String account, String nickname, String password, String sex, int exp, int level, int point, int comments, int fans, int likenum, int productions, String signature, String avantor_path, Timestamp join_date, Timestamp last_login_date) {
-        this.account = account;
+    public User(String user_id, String username, String nickname, String password, String sex, int exp, int level, int point, int comments, int fans, int likenum, int productions, String signature, String avantor_path, Timestamp join_date, Timestamp last_login_date) {
+        this.user_id = user_id;
+        this.username = username;
         this.nickname = nickname;
         this.password = password;
         this.sex = sex;
         this.exp = exp;
         this.level = level;
-        this.point = point;
+        this.points = point;
         this.comments = comments;
         this.fans = fans;
         this.likenum = likenum;
         this.productions = productions;
         this.signature = signature;
-        this.avantor_path = avantor_path;
+        this.avanta_path = avantor_path;
         this.join_date = join_date;
         this.last_login_date = last_login_date;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "user_id='" + user_id + '\'' +
+                ", username='" + username + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", password='" + password + '\'' +
+                ", sex='" + sex + '\'' +
+                ", exp=" + exp +
+                ", level=" + level +
+                ", points=" + points +
+                ", comments=" + comments +
+                ", fans=" + fans +
+                ", likenum=" + likenum +
+                ", productions=" + productions +
+                ", signature='" + signature + '\'' +
+                ", avanta_path='" + avanta_path + '\'' +
+                ", join_date=" + join_date +
+                ", last_login_date=" + last_login_date +
+                '}';
     }
 }

@@ -1119,125 +1119,128 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="282" parent="11" name="user"/>
-    <column id="283" parent="282" name="account">
+    <table id="282" parent="11" name="poi"/>
+    <table id="283" parent="11" name="user"/>
+    <column id="284" parent="282" name="user">
       <Position>1</Position>
-      <Comment>用户的账户</Comment>
-      <DataType>varchar(20)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-      <Collation>utf8_general_ci</Collation>
-    </column>
-    <column id="284" parent="282" name="nickname">
-      <Position>2</Position>
-      <Comment>用户昵称</Comment>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="285" parent="282" name="password">
-      <Position>3</Position>
-      <Comment>用户密码</Comment>
-      <DataType>varchar(20)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="286" parent="282" name="sex">
-      <Position>4</Position>
-      <Comment>用户性别</Comment>
-      <DataType>varchar(10)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="287" parent="282" name="exp">
-      <Position>5</Position>
-      <Comment>鐢ㄦ埛缁忛獙鍊?</Comment>
-      <DataType>int(5)|0s</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="288" parent="282" name="level">
-      <Position>6</Position>
-      <Comment>鐢ㄦ埛鐨勭瓑绾?</Comment>
-      <DataType>int(5)|0s</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;1&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="289" parent="282" name="points">
-      <Position>7</Position>
-      <Comment>鐢ㄦ埛鐨勭Н鍒嗭紝鍙厬鎹㈢墿鍝?</Comment>
-      <DataType>int(5)|0s</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="290" parent="282" name="comments">
-      <Position>8</Position>
-      <Comment>鐢ㄦ埛璇勮鐨勬暟閲?</Comment>
-      <DataType>int(5)|0s</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="291" parent="282" name="fans">
-      <Position>9</Position>
-      <Comment>鐢ㄦ埛鐨勭矇涓濇暟</Comment>
-      <DataType>int(5)|0s</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="292" parent="282" name="likenum">
-      <Position>10</Position>
-      <Comment>鐢ㄦ埛鑾峰緱鐨勭偣璧炴暟</Comment>
-      <DataType>int(10)|0s</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="293" parent="282" name="productions">
-      <Position>11</Position>
-      <Comment>鐢ㄦ埛鐨勪綔鍝佹暟閲?</Comment>
-      <DataType>int(5)|0s</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;0&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="294" parent="282" name="signature">
-      <Position>12</Position>
-      <Comment>用户的个性签名</Comment>
-      <DataType>varchar(150)|0s</DataType>
-      <NotNull>1</NotNull>
-      <DefaultExpression>&apos;这个公子还没有留下自己的足迹&apos;</DefaultExpression>
-      <ColumnKind>normal</ColumnKind>
-      <Collation>utf8_general_ci</Collation>
-    </column>
-    <column id="295" parent="282" name="avanta_path">
-      <Position>13</Position>
-      <Comment>用户头像的路径</Comment>
+    <key id="285" parent="282" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>user</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="286" parent="283" name="user_id">
+      <Position>1</Position>
+      <Comment>閻劍鍩涢惃鍕閹?</Comment>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
+      <Collation>utf8_general_ci</Collation>
     </column>
-    <column id="296" parent="282" name="join_date">
+    <column id="287" parent="283" name="username">
+      <Position>2</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="288" parent="283" name="password">
+      <Position>3</Position>
+      <Comment>閻劍鍩涚€靛棛鐖?</Comment>
+      <DataType>varchar(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="289" parent="283" name="nickname">
+      <Position>4</Position>
+      <Comment>鐢ㄦ埛鏄电О</Comment>
+      <DataType>varchar(20)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="290" parent="283" name="sex">
+      <Position>5</Position>
+      <Comment>鐢ㄦ埛鎬у埆</Comment>
+      <DataType>varchar(10)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="291" parent="283" name="exp">
+      <Position>6</Position>
+      <Comment>閻劍鍩涚紒蹇涚崣閸?</Comment>
+      <DataType>int(5)|0s</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="292" parent="283" name="level">
+      <Position>7</Position>
+      <Comment>閻劍鍩涢惃鍕搼缁?</Comment>
+      <DataType>int(5)|0s</DataType>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="293" parent="283" name="points">
+      <Position>8</Position>
+      <Comment>閻劍鍩涢惃鍕濋崚鍡礉閸欘垰鍘幑銏㈠⒖閸?</Comment>
+      <DataType>int(5)|0s</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="294" parent="283" name="comments">
+      <Position>9</Position>
+      <Comment>閻劍鍩涚拠鍕啈閻ㄥ嫭鏆熼柌?</Comment>
+      <DataType>int(5)|0s</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="295" parent="283" name="fans">
+      <Position>10</Position>
+      <Comment>閻劍鍩涢惃鍕焽娑撴繃鏆?</Comment>
+      <DataType>int(5)|0s</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="296" parent="283" name="likenum">
+      <Position>11</Position>
+      <Comment>閻劍鍩涢懢宄扮繁閻ㄥ嫮鍋ｇ挧鐐存殶</Comment>
+      <DataType>int(10)|0s</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="297" parent="283" name="productions">
+      <Position>12</Position>
+      <Comment>閻劍鍩涢惃鍕稊閸濅焦鏆熼柌?</Comment>
+      <DataType>int(5)|0s</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="298" parent="283" name="signature">
+      <Position>13</Position>
+      <Comment>鐢ㄦ埛鐨勪釜鎬х鍚?</Comment>
+      <DataType>varchar(150)|0s</DataType>
+      <DefaultExpression>&apos;杩欎釜鍏瓙杩樻病鏈夌暀涓嬭嚜宸辩殑瓒宠抗&apos;</DefaultExpression>
+      <ColumnKind>normal</ColumnKind>
+      <Collation>utf8_general_ci</Collation>
+    </column>
+    <column id="299" parent="283" name="avanta_path">
       <Position>14</Position>
-      <Comment>用户第一次注册的时间</Comment>
-      <DataType>datetime|0s</DataType>
-      <NotNull>1</NotNull>
+      <Comment>鐢ㄦ埛澶村儚鐨勮矾寰?</Comment>
+      <DataType>varchar(100)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="297" parent="282" name="last_login_date">
+    <column id="300" parent="283" name="join_date">
       <Position>15</Position>
-      <Comment>用户上一次登陆的时间</Comment>
+      <Comment>鐢ㄦ埛绗竴娆℃敞鍐岀殑鏃堕棿</Comment>
       <DataType>datetime|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="298" parent="282" name="PRIMARY">
+    <column id="301" parent="283" name="last_login_date">
+      <Position>16</Position>
+      <Comment>鐢ㄦ埛涓婁竴娆＄櫥闄嗙殑鏃堕棿</Comment>
+      <DataType>datetime|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="302" parent="283" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>account</ColNames>
+      <ColNames>user_id</ColNames>
       <Primary>1</Primary>
     </key>
   </database-model>

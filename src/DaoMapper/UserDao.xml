@@ -11,6 +11,20 @@ resultType:返回值类型。
 -->
 <mapper namespace="Dao.UserDao">
     <select id="Validation" resultType="java.lang.String">
- select '1' from user where account = #{account} and password = #{password}
+ select '1' from user where username = #{username} and password = #{password}
+ </select>
+
+    <select id="IsvValidUsername" resultType="java.lang.String">
+ select '1' from user where username = #{username}
+ </select>
+
+<insert id="InsertUser2DB" parameterType="Entity.User">
+    insert into user(user_id, username, password, nickname, sex, exp, level, points, comments, fans, likenum, productions, signature, avanta_path, join_date, last_login_date)
+    values (#{user.user_id},#{user.username},#{user.password},#{user.nickname},#{user.sex},#{user.exp},#{user.level},#{user.points},#{user.comments},#{user.fans},#{user.likenum},#{user.productions},#{user.signature},#{user.avanta_path},#{user.join_date},#{user.last_login_date})
+
+</insert>
+
+    <select id="GetUserInDB" resultType="Entity.User">
+ select * from user where username = #{username}
  </select>
 </mapper>
