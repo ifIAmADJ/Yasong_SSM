@@ -13,7 +13,6 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-
         <!--导入JDBC资源文件-->
         <context:property-placeholder location="classpath:Config/dbConfig.properties"/>
 
@@ -44,7 +43,7 @@
         <!--
                 扫描路径下所有标记为@Controller,@Repository,@Service的Bean。
         -->
-        <context:component-scan base-package="Controller,Dao,Service"/>
+        <context:component-scan base-package="Controller,Dao,ServiceAPI"/>
 
         <!--事务相关-->
         <!--配置事务管理器。采取声明式事务。-->

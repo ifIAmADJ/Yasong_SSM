@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="Yasong_SSM:war exploded">
-    <output-path>$USER_HOME$/Desktop</output-path>
+    <output-path>$PROJECT_DIR$/out</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="Yasong_SSM/web/Web" />
       <element id="directory" name="WEB-INF">
