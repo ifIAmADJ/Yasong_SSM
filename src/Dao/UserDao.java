@@ -4,6 +4,8 @@ import Entity.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Map;
+
 @Repository
 public interface UserDao {
 
@@ -34,5 +36,20 @@ public interface UserDao {
      * @return 将尝试返回完整的用户模型。
      */
     User GetUserInDB(@Param("username")String username);
+
+    /**
+     * 该方法用于返回用户在页面中呈现的可见视图。
+     * @param user_id 需要提供用户的user_id
+     * @return 将尝试返回部分的用户模型。
+     */
+    Map<String,Object> GetUserViewInDB(@Param("user_id")String user_id);
+
+    /**
+     * 以下是对用户单独属性操作时的完整信息。
+     */
+    boolean UpdateNickname(@Param("user_id") String user_id,@Param("nickname")String nickname);
+    boolean UpdateSex(@Param("user_id") String user_id,@Param("sex")String sex);
+    boolean UpdateSignature(@Param("user_id") String user_id,@Param("signature")String signature);
+
 
 }

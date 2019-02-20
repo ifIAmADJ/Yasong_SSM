@@ -27,4 +27,21 @@ resultType:返回值类型。
     <select id="GetUserInDB" resultType="Entity.User">
  select * from user where username = #{username}
  </select>
+
+    <update id="UpdateNickname" parameterType="java.lang.String">
+update user set nickname=#{nickname} where user_id=#{user_id}
+    </update>
+
+    <update id="UpdateSex" parameterType="java.lang.String">
+update user set sex=#{sex} where user_id=#{user_id}
+    </update>
+
+    <update id="UpdateSignature" parameterType="java.lang.String">
+update user set signature=#{signature} where user_id=#{user_id}
+    </update>
+
+
+    <select id="GetUserViewInDB" resultType="java.util.Map">
+        select user_id, nickname, sex, exp, level, points, comments, fans, likenum, productions, signature, avanta_path from user where user_id=#{user_id}
+    </select>
 </mapper>

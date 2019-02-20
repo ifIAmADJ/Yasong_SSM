@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
@@ -25,34 +26,27 @@ public class LoginHandler {
 
     @RequestMapping("/login")
     public @ResponseBody
-    Map<String,Object> tryLogin(HttpServletResponse response, HttpServletRequest request, @RequestBody Map<String,String> map)
+    Map<String,Object> tryLogin(@RequestBody Map<String,String> map,HttpServletResponse response)
     {
         Map<String,Object> returnMap=new HashMap<>();
-
+        Cookie cookie;
         returnMap.put("code","1");
 
         if(loginService.login(map.get("username"),map.get("password")).equals("success"))
         {
             User returnUser = userDao.GetUserInDB(map.get("username"));
 
-            returnMap.put("code","0");
-            returnMap.put("user_id",returnUser.getUser_id());
-            returnMap.put("username",returnUser.getUsername());
-            returnMap.put("nickname",returnUser.getNickname());
-            returnMap.put("sex",returnUser.getSex());
-            returnMap.put("exp",returnUser.getExp());
-            returnMap.put("level",returnUser.getLevel());
-            returnMap.put("points",returnUser.getPoints());
-            returnMap.put("comments",returnUser.getComments());
-            returnMap.put("fans",returnUser.getFans());
-            returnMap.put("likenum",returnUser.getFans());
-            returnMap.put("productions",returnUser.getProductions());
-            returnMap.put("signature",returnUser.getSignature());
-            returnMap.put("avanta_path",returnUser.getAvanta_path());
+            returnMap=userDao.GetUserViewInDB(returnUser.getUser_id());
+
+            cookie=new Cookie("user_id",returnUser.getUser_id());
+            cookie.setMaxAge(60*60*24);
+            cookie.setPath("/");
+            response.addCookie(cookie);
+
         }else
         {
             returnMap.put("code","1");
-            returnMap.put("msg","账号或者用户名不正确，请确认。");
+            returnMap.put("msg","账号不存在或者密码不正确，请确认。");
         }
         return returnMap;
 
