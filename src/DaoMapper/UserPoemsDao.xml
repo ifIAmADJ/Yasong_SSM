@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+namespace:命名空间,设置为代理接口的*全类名*或者相对路径
+id:sql语句的唯一标识，设置为代理接口的类方法名。
+resultType:返回值类型。
+#{param}:将接口的参数名为"param"的字段插入到sql语句中。
+-->
+<mapper namespace="Dao.UserPoemsDao">
+    <select id="getUserPoemsByList" resultType="Entity.UserPoem">
+ select poem_code as poem_code,nickname as nickname,avanta_path as avanta_path,
+ title as title,text as text,comments_number as comments_number,like_number as likenumber,
+ mark_number as mark_number
+ from user,user_poems where user.user_id = user_poems.user_id
+ limit #{start},#{perPageSize}
+ </select>
+
+    <select id="getTotalItems" resultType="java.lang.Integer">
+select count(user_poems.poem_code) from user_poems
+ </select>
+
+</mapper>

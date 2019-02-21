@@ -44,4 +44,14 @@ update user set signature=#{signature} where user_id=#{user_id}
     <select id="GetUserViewInDB" resultType="java.util.Map">
         select user_id, nickname, sex, exp, level, points, comments, fans, likenum, productions, signature, avanta_path from user where user_id=#{user_id}
     </select>
+
+
+    <select id="selectNicknameByUser_id" resultType="java.lang.String">
+        select nickname from user where user_id =#{user_id}
+    </select>
+
+    <select id="selectAvanta_pathByUser_id" resultType="java.lang.String">
+        select avanta_path from user where user_id =#{user_id}
+    </select>
+
 </mapper>
