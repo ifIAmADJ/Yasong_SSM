@@ -40,7 +40,8 @@ public class SupplementHandler {
             //当用户更新完毕之后，返回完整的用户信息。
             if(supplementService.supplementInform(user_id,hasNewNickname,hasNewSex,hasNewSignature).equals("success"))
             {
-                resultMap=userDao.GetUserViewInDB(user_id);
+//                resultMap=userDao.GetUserViewInDB(user_id);
+                resultMap.put("msg","完善资料成功");
                 resultMap.put("code","0");
                 return resultMap;
             }

@@ -39,9 +39,9 @@ public class RegisterHandler {
         {
            User returnUser = userDao.GetUserInDB(getSettedUsername);
 
-           returnMap=userDao.GetUserViewInDB(returnUser.getUser_id());
-           returnMap.put("code","0");
-
+//           returnMap=userDao.GetUserViewInDB(returnUser.getUser_id());
+             returnMap.put("code","0");
+             returnMap.put("msg","注册成功");
 //            注册完毕后将cookie返回到客户端当中。
             cookie=new Cookie("user_id",returnUser.getUser_id());
             cookie.setMaxAge(60*60*24);

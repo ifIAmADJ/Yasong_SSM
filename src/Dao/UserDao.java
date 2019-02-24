@@ -50,9 +50,12 @@ public interface UserDao {
     boolean UpdateNickname(@Param("user_id") String user_id,@Param("nickname")String nickname);
     boolean UpdateSex(@Param("user_id") String user_id,@Param("sex")String sex);
     boolean UpdateSignature(@Param("user_id") String user_id,@Param("signature")String signature);
+
     /**
      * 以下是使用user_id作为凭据单独访问用户属性的方法。
      */
     String selectNicknameByUser_id(@Param("user_id") String user_id);
     String selectAvanta_pathByUser_id(@Param("user_id") String user_id);
+    String selectPointsByUser_id(@Param("user_id")String user_id);
+    String selectAchievementByUser_id(@Param("user_id")String user_id);
 }

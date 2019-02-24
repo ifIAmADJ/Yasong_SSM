@@ -6,5 +6,7 @@
     <mappers>
         <mapper resource="DaoMapper/UserDao.xml"/>
         <mapper resource="DaoMapper/UserPoemsDao.xml"/>
+        <mapper resource="DaoMapper/SearchDao.xml"/>
+        <mapper resource="DaoMapper/ClassicalPoemsDao.xml"/>
     </mappers>
 </configuration>

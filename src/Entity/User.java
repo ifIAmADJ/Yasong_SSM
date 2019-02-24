@@ -33,6 +33,8 @@ public class User {
     private Integer productions;
 //    用户的个性签名。
     private String signature;
+//    用户展示的成就。
+    private String achievement;
 //    获取用户的头像存储路径。
     private String avanta_path;
 //    用户首次注册的时间。
@@ -160,6 +162,14 @@ public class User {
         this.avanta_path = avanta_path;
     }
 
+    public String getAchievement() {
+        return achievement;
+    }
+
+    public void setAchievement(String achievement) {
+        this.achievement = achievement;
+    }
+
     public Timestamp getJoin_date() {
         return join_date;
     }
@@ -176,7 +186,7 @@ public class User {
         this.last_login_date = last_login_date;
     }
 
-    public User(String user_id, String username, String nickname, String password, String sex, int exp, int level, int point, int comments, int fans, int likenum, int productions, String signature, String avantor_path, Timestamp join_date, Timestamp last_login_date) {
+    public User(String user_id, String username, String nickname, String password, String sex, Integer exp, Integer level, Integer points, Integer comments, Integer fans, Integer likenum, Integer productions, String signature, String achievement, String avanta_path, Timestamp join_date, Timestamp last_login_date) {
         this.user_id = user_id;
         this.username = username;
         this.nickname = nickname;
@@ -184,13 +194,14 @@ public class User {
         this.sex = sex;
         this.exp = exp;
         this.level = level;
-        this.points = point;
+        this.points = points;
         this.comments = comments;
         this.fans = fans;
         this.likenum = likenum;
         this.productions = productions;
         this.signature = signature;
-        this.avanta_path = avantor_path;
+        this.achievement = achievement;
+        this.avanta_path = avanta_path;
         this.join_date = join_date;
         this.last_login_date = last_login_date;
     }
@@ -211,6 +222,7 @@ public class User {
                 ", likenum=" + likenum +
                 ", productions=" + productions +
                 ", signature='" + signature + '\'' +
+                ", achievement='" + achievement + '\'' +
                 ", avanta_path='" + avanta_path + '\'' +
                 ", join_date=" + join_date +
                 ", last_login_date=" + last_login_date +

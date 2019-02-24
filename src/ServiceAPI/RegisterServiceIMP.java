@@ -32,14 +32,11 @@ public class RegisterServiceIMP implements RegisterService {
            Timestamp timestamp=new Timestamp(System.currentTimeMillis());
             //使用MD5码生成user_id。根据用户传入的用户名生成。
            String initUser_id=Code2Md5.encryption(username);
-            System.out.println("time:"+timestamp);
-            System.out.println("initUser_id"+initUser_id);
             //创建User类POJO,进行装载。
-            User user=new User(initUser_id,username,"无名侠客",password,"male",0,1,0,0,0,0,0,"Ta很神秘~","/",timestamp,timestamp);
+            User user=new User(initUser_id,username,"无名侠客",password,"male",0,1,0,0,0,0,0,"Ta很神秘~",null,"/",timestamp,timestamp);
             System.out.println(user.toString());
             //调用持久层接口.
             userDao.InsertUser2DB(user);
-
             //成功后返回字符串。
             return "success";
         }

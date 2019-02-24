@@ -19,8 +19,8 @@ resultType:返回值类型。
  </select>
 
 <insert id="InsertUser2DB" parameterType="Entity.User">
-    insert into user(user_id, username, password, nickname, sex, exp, level, points, comments, fans, likenum, productions, signature, avanta_path, join_date, last_login_date)
-    values (#{user.user_id},#{user.username},#{user.password},#{user.nickname},#{user.sex},#{user.exp},#{user.level},#{user.points},#{user.comments},#{user.fans},#{user.likenum},#{user.productions},#{user.signature},#{user.avanta_path},#{user.join_date},#{user.last_login_date})
+    insert into user(user_id, username, password, nickname, sex, exp, level, points, comments, fans, likenum, productions, signature, avanta_path,achievement, join_date, last_login_date)
+    values (#{user.user_id},#{user.username},#{user.password},#{user.nickname},#{user.sex},#{user.exp},#{user.level},#{user.points},#{user.comments},#{user.fans},#{user.likenum},#{user.productions},#{user.signature},#{user.avanta_path},#{user.achievement},#{user.join_date},#{user.last_login_date})
 
 </insert>
 
@@ -42,7 +42,7 @@ update user set signature=#{signature} where user_id=#{user_id}
 
 
     <select id="GetUserViewInDB" resultType="java.util.Map">
-        select user_id, nickname, sex, exp, level, points, comments, fans, likenum, productions, signature, avanta_path from user where user_id=#{user_id}
+        select user_id, nickname, sex, exp, level, points, comments, fans, likenum, productions, signature, avanta_path ,achievement from user where user_id=#{user_id}
     </select>
 
 
@@ -54,4 +54,12 @@ update user set signature=#{signature} where user_id=#{user_id}
         select avanta_path from user where user_id =#{user_id}
     </select>
 
+    <select id="selectPointsByUser_id" resultType="java.lang.String">
+        select points from user where user_id =#{user_id}
+    </select>
+
+
+    <select id="selectAchievementByUser_id" resultType="java.lang.String">
+        select achievement from user where user_id =#{user_id}
+    </select>
 </mapper>

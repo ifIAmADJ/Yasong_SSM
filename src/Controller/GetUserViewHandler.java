@@ -11,12 +11,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-public class GetUserView {
+public class GetUserViewHandler {
 
     @Autowired
     UserDao userDao;
 
-    @RequestMapping("/getUserView")
+    @RequestMapping("/getUserView1")
     public @ResponseBody Map<String, Object> tryGetUserView(@CookieValue(value = "user_id",required = false)String user_id)
     {
         Map<String, Object> returnMap=new HashMap<>();

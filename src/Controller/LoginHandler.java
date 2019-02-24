@@ -30,13 +30,15 @@ public class LoginHandler {
     {
         Map<String,Object> returnMap=new HashMap<>();
         Cookie cookie;
-        returnMap.put("code","1");
+
 
         if(loginService.login(map.get("username"),map.get("password")).equals("success"))
         {
             User returnUser = userDao.GetUserInDB(map.get("username"));
 
-            returnMap=userDao.GetUserViewInDB(returnUser.getUser_id());
+        //    returnMap=userDao.GetUserViewInDB(returnUser.getUser_id());
+            returnMap.put("code","0");
+            returnMap.put("msg","登陆成功");
 
             cookie=new Cookie("user_id",returnUser.getUser_id());
             cookie.setMaxAge(60*60*24);

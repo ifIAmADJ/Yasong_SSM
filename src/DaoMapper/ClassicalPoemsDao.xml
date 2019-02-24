@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+namespace:命名空间,设置为代理接口的*全类名*或者相对路径
+id:sql语句的唯一标识，设置为代理接口的类方法名。
+resultType:返回值类型。
+#{param}:将接口的参数名为"param"的字段插入到sql语句中。
+-->
+<mapper namespace="Dao.ClassicalPoemsDao">
+    <select id="getDailyPoem" resultType="java.util.Map">
+select  poem_code,text,tag ,poet_name,dynasty
+from   classical_poems,poet
+where classical_poems.poet_code = poet.poet_code
+limit 0,1
+</select>
+
+    <select id="ifThisClassicalPoemHasMarked" resultType="java.lang.String">
+select '1'
+from user_marked_classical_poems
+where user_id=#{user_id} and poem_code = #{poem_code}
+</select>
+    <insert id="markThisClassicalPoem" >
+insert into user_marked_classical_poems(user_id, poem_code) values (#{user_id},#{poem_code})
+</insert>
+</mapper>

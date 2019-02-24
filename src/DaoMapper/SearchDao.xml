@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--
+namespace:命名空间,设置为代理接口的*全类名*或者相对路径
+id:sql语句的唯一标识，设置为代理接口的类方法名。
+resultType:返回值类型。
+#{param}:将接口的参数名为"param"的字段插入到sql语句中。
+-->
+<mapper namespace="Dao.SearchDao">
+    <select id="SearchUserByKeyWord" resultType="java.util.Map">
+select user.nickname,user.avanta_path,user.signature,user.sex
+from user
+where user.nickname like concat('%',#{keyWord},'%')
+limit #{start},#{count}
+ </select>
+
+    <select id="CountFoundUsers" resultType="java.lang.Integer">
+    select count(user_id)
+from user
+where user.nickname like concat('%',#{keyWord},'%')
+ </select>
+
+
+    <select id="SearchUserPoemsByKeyWord" resultType="java.util.Map">
+select user_poems.title as title,user_poems.text as text,DATE_FORMAT(user_poems.submit_date,'%Y-%m-%d %H:%i:%s') as submit_date,user.nickname as nickname
+from user_poems,user
+where user_poems.title like concat('%',#{keyWord},'%') and user.user_id=user_poems.user_id
+ </select>
+
+    <select id="C" resultType="java.util.Map">
+
+    </select>
+
+    <select id="SearchPoetsByKeyWord" resultType="java.util.Map">
+select poet_name,dynasty,avanta_path,signature
+from poet
+where poet_name like concat('%',#{keyWord},'%')
+ </select>
+
+
+    <select id="3" resultType="java.util.Map">
+
+    </select>
+    <select id="SearchClassicalPoemsByKeyWord" resultType="java.util.Map">
+select title,poet.poet_name as poet_name,poet.dynasty as dynasty
+from classical_poems,poet
+where classical_poems.title like concat('%',#{keyWord},'%') and classical_poems.poet_code=poet.poet_code
+ </select>
+
+    <select id="4" resultType="java.util.Map">
+
+    </select>
+
+
+
+</mapper>
