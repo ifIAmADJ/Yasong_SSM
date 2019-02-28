@@ -14,11 +14,12 @@ import java.util.Map;
 @Controller
 public class LogoutHandler {
 
+    //用户注销。
     @RequestMapping("/logout")
     public @ResponseBody Map<String,Object> tryLogout(HttpServletRequest request, HttpServletResponse response)
     {
         Map<String,Object> resultMap=new HashMap<>();
-//        搜索关于user_id的cookie，并将其删掉。
+      //搜索关于user_id的cookie，并将其删掉。
         Cookie[] cookies=request.getCookies();
 
         for (Cookie c :

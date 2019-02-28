@@ -2,7 +2,7 @@ package Controller;
 
 import Dao.UserDao;
 import Entity.User;
-import Service.RegisterService;
+import Services.RegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,6 +23,7 @@ public class RegisterHandler {
     @Autowired
     UserDao userDao;
 
+    //注册页面
     @RequestMapping("/regist")
     public @ResponseBody Map<String,Object>
     tryRegist(HttpServletResponse response,@RequestBody Map<String,String> map)

@@ -8,5 +8,6 @@
         <mapper resource="DaoMapper/UserPoemsDao.xml"/>
         <mapper resource="DaoMapper/SearchDao.xml"/>
         <mapper resource="DaoMapper/ClassicalPoemsDao.xml"/>
+        <mapper resource="DaoMapper/PoetDao.xml"/>
     </mappers>
 </configuration>

@@ -62,4 +62,123 @@ update user set signature=#{signature} where user_id=#{user_id}
     <select id="selectAchievementByUser_id" resultType="java.lang.String">
         select achievement from user where user_id =#{user_id}
     </select>
+
+
+    <select id="hisInform" resultType="java.util.Map">
+        select avanta_path,nickname,sex,level,fans,signature from user where user_id =#{user_id}
+    </select>
+
+    <select id="isPicked" resultType="java.lang.String">
+ select '1' from relationship where user_id = #{my_id} and picked_user_id = #{his_id}
+ </select>
+
+    <select id="hisAchievements" resultType="java.lang.String">
+ select achievement from user_achievement where user_id=#{user_id}
+ </select>
+
+    <insert id="pickHim">
+    insert into  relationship(user_id, picked_user_id) values (#{my_id},#{his_id})
+    </insert>
+
+    <delete id="dissHim">
+    delete from relationship  where user_id=#{my_id} and picked_user_id =#{his_id}
+    </delete>
+
+    <select id="getMyInform" resultType="java.util.Map">
+        select avanta_path,nickname,level,fans,achievement,DATE_FORMAT(join_date,'%Y-%m-%d %H:%i:%s') join_date,sex,signature  from user where user_id =#{user_id}
+    </select>
+
+
+    <update id="putMyNewAvanta" parameterType="java.lang.String">
+update user set avanta_path=#{avanta_path} where user_id=#{user_id}
+    </update>
+
+    <select id="getAllAvantas" resultType="java.lang.String">
+select avanta_path
+from avanta_paths
+limit #{start},#{count}
+ </select>
+
+    <select id="countALLAvantas" resultType="java.lang.Integer">
+    select count(avanta_path)
+from avanta_paths
+    </select>
+
+    <select id="getMarkedUserPoems" resultType="java.util.Map">
+select title,user_id,DATE_FORMAT(marked_date,'%m-%d-%Y') as marked_date, user_marked_user_poems.poem_code as poem_code
+from user_marked_user_poems,user_poems
+where user_marked_user_poems.user_id=#{user_id} and user_marked_user_poems.user_id=user_poems.user_id
+limit #{start},#{count}
+ </select>
+
+    <select id="getMyTrack" resultType="java.util.Map">
+        select avanta_path,nickname,achievement,`level`,exp,comments,likenum,fans from user where user_id =#{user_id}
+    </select>
+
+    <select id="getMyAchievements" resultType="java.lang.String">
+        select achievement from user_achievement where user_id =#{user_id}
+    </select>
+
+    <select id="getALLAchievements" resultType="java.lang.String">
+        select achievement from achievements
+    </select>
+
+    <update id="chooseMyNewAchievement">
+update user set achievement=#{achievement} where user_id=#{user_id}
+    </update>
+
+    <select id="isMyAchievement" resultType="java.lang.String">
+        select '1' from user_achievement where user_id=#{user_id} and achievement=#{achievement}
+    </select>
+
+    <select id="getIMarkedUsers" resultType="java.util.Map">
+select picked_user_id,nickname,signature,avanta_path,sex
+from relationship,user
+where  relationship.user_id=#{user_id} and relationship.picked_user_id=user.user_id
+limit #{start},#{count}
+ </select>
+
+    <select id="CountIMarkedUsers" resultType="java.lang.Integer">
+    select count(user_id)
+from relationship
+where user_id=#{user_id}
+    </select>
+
+    <select id="whoMarkedMe" resultType="java.util.Map">
+select relationship.user_id,nickname,signature,avanta_path,sex
+from relationship,user
+where  relationship.picked_user_id=#{user_id} and relationship.user_id=user.user_id
+limit #{start},#{count}
+ </select>
+
+    <select id="CountWhoMarkedMe" resultType="java.lang.Integer">
+    select count(picked_user_id)
+from relationship
+where picked_user_id=#{user_id}
+    </select>
+
+    <update id="addUserFans" parameterType="java.lang.String">
+update user set user.fans=fans+1 where user_id=#{user_id}
+    </update>
+    <update id="subUserFans" parameterType="java.lang.String">
+update user set user.fans=fans-1 where user_id=#{user_id}
+    </update>
+
+    <update id="addUserLikenum" parameterType="java.lang.String">
+update user set user.likenum=likenum+1 where user_id=#{user_id}
+    </update>
+
+    <update id="subUserLikenum" parameterType="java.lang.String">
+update user set user.likenum=likenum-1 where user_id=#{user_id}
+    </update>
+
+    <update id="addUserComments" parameterType="java.lang.String">
+update user set user.comments=comments+1 where user_id=#{user_id}
+    </update>
+
+    <update id="subUserComments" parameterType="java.lang.String">
+update user set user.comments=comments-1 where user_id=#{user_id}
+    </update>
+
+
 </mapper>

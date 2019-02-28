@@ -1,4 +1,4 @@
-package Service;
+package Services;
 
 public interface RegisterService {
     

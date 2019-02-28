@@ -29,9 +29,95 @@ order by user_poems.submit_date DESC
  </select>
 
 
-
     <select id="getTotalItems" resultType="java.lang.Integer">
 select count(user_poems.poem_code) from user_poems
  </select>
 
+ <update id="likeThisPoem">
+update user_poems set like_number =like_number+1 where poem_code=#{poem_code}
+ </update>
+
+ <select id="ifThisUserPoemIsLiked" resultType="java.lang.String">
+select '1'
+from user_like_user_poems
+where user_id=#{user_id} and poem_code = #{poem_code}
+</select>
+
+ <insert id="logThisLike">
+insert into user_like_user_poems(user_id, poem_code) values (#{user_id},#{poem_code})
+ </insert>
+
+ <select id="getDailyPoem" resultType="java.util.Map">
+select  poem_code,text,tag ,poet_name,dynasty
+from   classical_poems,poet
+where classical_poems.poet_code = poet.poet_code
+limit 0,1
+</select>
+
+ <select id="ifThisUserPoemHasMarked" resultType="java.lang.String">
+select '1'
+from user_marked_user_poems
+where user_id=#{user_id} and poem_code = #{poem_code}
+</select>
+ <insert id="markThisUserPoem" >
+insert into user_marked_user_poems(user_id, poem_code,marked_date) values (#{user_id},#{poem_code},#{marked_date})
+</insert>
+
+ <select id="browseThisUserPoem" resultType="java.util.Map">
+select avanta_path,nickname,achievement,DATE_FORMAT(submit_date,'%Y-%m-%d %H:%i:%s') as submit_date,poem_code,title,text,background_path,logo_path,
+comments_number,like_number,mark_number
+from user_poems,user
+where poem_code=#{poem_code} and user.user_id=user_poems.user_id
+</select>
+
+ <insert id="putComment2UserPoem">
+insert into user_poem_comment(poem_code, comment_date, user_id, comment_text) values (#{poem_code},#{comment_date},#{user_id},#{comment_text})
+</insert>
+
+ <select id="CountCommentsByUserPoemCode" resultType="java.lang.Integer">
+select count(user_id) from user_poems
+where poem_code=#{poem_code}
+ </select>
+
+ <select id="getCommentsByUserPoemCode" resultType="java.util.Map">
+select avanta_path,nickname,comment_text,DATE_FORMAT(comment_date,'%Y-%m-%d %H:%i:%s') as comment_date
+from user_poem_comment,user
+where poem_code=#{poem_code} and user_poem_comment.user_id=user.user_id
+limit #{start},#{count}
+ </select>
+
+ <select id="getMarkedUserPoems" resultType="java.util.Map">
+select title,user_marked_user_poems.poem_code as poem_code,DATE_FORMAT(marked_date,'%m-%d-%Y') as marked_date,user_marked_user_poems.poem_code as poem_code,user.nickname as nickname
+from user_marked_user_poems,user_poems,user
+where user_marked_user_poems.user_id=#{user_id} and user_marked_user_poems.poem_code=user_poems.poem_code and user_poems.user_id=user.user_id
+limit #{start},#{count}
+ </select>
+
+ <select id="CountAllMarkedUserPoems" resultType="java.lang.Integer">
+select count(poem_code)
+from user_marked_user_poems
+where user_id =#{user_id}
+    </select>
+
+ <delete id="deleteMarkedUserPoems">
+        delete from user_marked_user_poems where user_id=#{user_id} and poem_code=#{poem_code}
+    </delete>
+
+ <select id="returnItsAuthor" resultType="java.lang.String">
+select user_id
+from user_poems
+where poem_code=#{poem_code}
+    </select>
+
+ <update id="addCommentsNumber" parameterType="java.lang.Integer">
+update user_poems set comments_number =comments_number+1 where poem_code=#{poem_code}
+ </update>
+
+ <update id="addMarkedNumber" parameterType="java.lang.Integer">
+update classical_poems set mark_number=mark_number+1 where poem_code=#{poem_code}
+ </update>
+
+ <update id="subMarkedNumber" parameterType="java.lang.Integer">
+update classical_poems set mark_number=mark_number-1 where poem_code=#{poem_code}
+ </update>
 </mapper>

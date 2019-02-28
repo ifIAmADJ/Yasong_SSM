@@ -28,30 +28,39 @@ where user.nickname like concat('%',#{keyWord},'%')
 select user_poems.title as title,user_poems.text as text,DATE_FORMAT(user_poems.submit_date,'%Y-%m-%d %H:%i:%s') as submit_date,user.nickname as nickname
 from user_poems,user
 where user_poems.title like concat('%',#{keyWord},'%') and user.user_id=user_poems.user_id
+limit #{start},#{count}
  </select>
 
-    <select id="C" resultType="java.util.Map">
-
+    <select id="CountFoundUserPoems" resultType="java.lang.Integer">
+    select count(user_id)
+from user_poems
+where user_poems.title like concat('%',#{keyWord},'%')
     </select>
 
     <select id="SearchPoetsByKeyWord" resultType="java.util.Map">
 select poet_name,dynasty,avanta_path,signature
 from poet
 where poet_name like concat('%',#{keyWord},'%')
+limit #{start},#{count}
  </select>
 
 
-    <select id="3" resultType="java.util.Map">
-
+    <select id="CountFoundPoets" resultType="java.lang.Integer">
+select count(poet_code)
+from poet
+where poet_name like concat('%',#{keyWord},'%')
     </select>
     <select id="SearchClassicalPoemsByKeyWord" resultType="java.util.Map">
 select title,poet.poet_name as poet_name,poet.dynasty as dynasty
 from classical_poems,poet
 where classical_poems.title like concat('%',#{keyWord},'%') and classical_poems.poet_code=poet.poet_code
+limit #{start},#{count}
  </select>
 
-    <select id="4" resultType="java.util.Map">
-
+    <select id="CountFoundClassicalPoems" resultType="java.lang.Integer">
+    select count(poem_code)
+from classical_poems
+where classical_poems.title like concat('%',#{keyWord},'%')
     </select>
 
 

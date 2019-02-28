@@ -1,7 +1,7 @@
 package Controller;
 
 import Dao.UserDao;
-import Service.SupplementService;
+import Services.SupplementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -21,6 +21,7 @@ public class SupplementHandler {
     @Autowired
     UserDao userDao;
 
+    //完善用户信息。
     @RequestMapping(value = "/supplement")
     public @ResponseBody Map<String,Object>
     trySupplement(@CookieValue(value = "user_id",required = false)String user_id, @RequestBody  Map<String, String> getParams)
